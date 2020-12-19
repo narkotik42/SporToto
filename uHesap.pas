@@ -49,8 +49,10 @@ end;
 
 function TSporToto.RandomizeRun:TRandomizeList;
 var
-  Ind : Integer;
-  Gcc : Integer;
+  Ind  : Integer;
+  Gcc  : Integer;
+  Gcc2 : Integer;
+  Gcc3 : Integer;
 begin
   Result := TRandomizeList.Create;
 
@@ -73,6 +75,17 @@ begin
       FList.Add(0);
     for Ind := 1 to F2 do
       FList.Add(2);
+
+    Randomize;
+    for Ind := 0 to Pred(FList.Count * 5) do // 5X RANDOM
+    begin
+      Gcc  := Random(FList.Count);
+      Gcc2 := Random(FList.Count);
+      Gcc3 := FList[Gcc];
+
+      FList[Gcc]  := FList[Gcc2];
+      FList[Gcc2] := Gcc3;
+    end;
 
     Randomize;
     while FList.Count > 0 do
